@@ -26,7 +26,7 @@ class User(AbstractBaseUser):
     email = models.EmailField(verbose_name=_("Email"), unique=True)
     name = models.CharField(verbose_name=_("Name"), max_length=150)
     phone_number = models.CharField(verbose_name=_("Phone Number"), max_length=15)
-    date_of_birth = models.DateField(verbose_name=_("Date of Birth"))
+    date_of_birth = models.DateField(verbose_name=_("Date of Birth"), auto_now=False, null=True)
     address = models.TextField(verbose_name=_("Address"))
     gender = models.CharField(verbose_name=_("Gender"), max_length=10, choices=GENDER_CHOICES)
     profile_picture = models.ImageField(verbose_name=_("Profile Picture"), upload_to='profile_pics/', null=True, blank=True)
