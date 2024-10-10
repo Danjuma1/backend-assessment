@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import PermissionsMixin
 
 class UserManager(BaseUserManager):
     def create_user(self, email, name, password=None, **extra_fields):
@@ -22,7 +23,7 @@ GENDER_CHOICES = (
     ("Female", "Female"),
 )
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(verbose_name=_("Email"), unique=True)
     name = models.CharField(verbose_name=_("Name"), max_length=150)
     phone_number = models.CharField(verbose_name=_("Phone Number"), max_length=15)
