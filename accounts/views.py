@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from ninja import Router
 from rest_framework.authtoken.models import Token
+from ninja.security import HttpBearer
 
 from .schemas import UserCreateSchema, UserSchema
 from .serializers import UserProfileSerializer
@@ -34,8 +35,16 @@ def login(request, email: str, password: str):
         return {"token": token.key}
     else:
         return {"error": "Invalid credentials"}
+    
+class TokenAuth(HttpBearer):
+    def authenticate(self, request, token):
+        try:
+            token = Token.objects.get(key=token)
+            return token.user 
+        except Token.DoesNotExist:
+            return None 
 
-@auth_router.get("/profile", auth=True)
+@auth_router.get("/profile", auth=TokenAuth())
 def profile(request):
     user = request.auth
     profile_data = UserProfileSerializer(user).data
