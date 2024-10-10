@@ -1,0 +1,16 @@
+annotated-types==0.7.0
+asgiref==3.8.1
+Django==5.1.2
+django-ninja==1.3.0
+djangorestframework==3.15.2
+djangorestframework-simplejwt==5.3.1
+dnspython==2.7.0
+email_validator==2.2.0
+idna==3.10
+pillow==10.4.0
+pydantic==2.9.2
+pydantic_core==2.23.4
+PyJWT==2.9.0
+sqlparse==0.5.1
+typing_extensions==4.12.2
+tzdata==2024.2
